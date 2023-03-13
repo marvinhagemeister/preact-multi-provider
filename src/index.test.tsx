@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { MultiProvider } from ".";
+import { MultiProvider, provide } from ".";
 import { createContext, render } from "preact";
 import { useContext, useMemo, useState } from "preact/hooks";
 import { act, teardown } from "preact/test-utils";
@@ -188,5 +188,25 @@ describe("MultiContext", () => {
     expect(scratch.textContent).toEqual("A1");
     expect(spy1).not.toBeCalled();
     expect(spy2).toBeCalledWith(1);
+  });
+
+  it("should works with provide helper", () => {
+    const Ctx = createContext("a");
+
+    function Child() {
+      const ctx = useContext(Ctx);
+      return <p>{String(ctx)}</p>;
+    }
+
+    function App() {
+      return (
+        <MultiProvider values={[provide(Ctx, "A")]}>
+          <Child />
+        </MultiProvider>
+      );
+    }
+    render(<App />, scratch);
+
+    expect(scratch.textContent).toEqual("A");
   });
 });
