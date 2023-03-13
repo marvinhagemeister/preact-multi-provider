@@ -4,6 +4,6 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "target": "ES2017",
-    "moduleResolution": "bundler"
+    "moduleResolution": "node"
   }
 }

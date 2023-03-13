@@ -1,7 +1,7 @@
 {
   "name": "preact-multi-context",
   "version": "0.0.1",
-  "description": "",
+  "description": "Provide multiple contexts at once instead of using hundreds of context providers",
   "keywords": [
     "preact",
     "context"
@@ -18,7 +18,9 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "build2": "esbuild src/index.tsx --outfile=dist/esm/index.mjs --sourcemap=inline && esbuild src/index.tsx --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap=inline && tsc -p tsconfig.node.json --emitDeclarationOnly",
+    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json"
   },
   "peerDependencies": {
     "preact": "^10.10.0"
@@ -29,6 +31,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.0",
     "preact": "^10.13.1",
+    "rimraf": "^4.4.0",
     "typescript": "^4.9.5",
     "vitest": "^0.29.2"
   }
