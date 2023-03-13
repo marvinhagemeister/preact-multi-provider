@@ -1,0 +1,35 @@
+{
+  "name": "preact-multi-context",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "preact",
+    "context"
+  ],
+  "author": "Marvin Hagemeister <hello@marvinh.dev>",
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "preact": "^10.10.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.5.0",
+    "happy-dom": "^8.9.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "preact": "^10.13.1",
+    "typescript": "^4.9.5",
+    "vitest": "^0.29.2"
+  }
+}
