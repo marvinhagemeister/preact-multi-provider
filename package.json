@@ -37,5 +37,15 @@
     "rimraf": "^4.4.0",
     "typescript": "^4.9.5",
     "vitest": "^0.29.2"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,yml}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
