@@ -20,8 +20,8 @@ pnpm install preact-multi-provider
 And then use it in your code:
 
 ```jsx
-import { createContext } from "preact";
-import { MultiProvider, provide } from "preact-multi-provider"
+import { createContext } from "preact";
+import { MultiProvider, provide } from "preact-multi-provider";
 
 const FooContext = createContext("foo");
 const BarContext = createContext("bar");
@@ -29,13 +29,14 @@ const BazContext = createContext("baz");
 const BoofContexxt = createContext("boof");
 
 // usage
-<MultiProvider values=[
-  provide(FooContext, "foo value"),
-  provide(BarContext, "bar value"),
-  provide(BazContext, "baz value"),
-  provide(BoofContext, "boof value"),
-]>
-</MultiProvider>
+<MultiProvider
+  values={[
+    provide(FooContext, "foo value"),
+    provide(BarContext, "bar value"),
+    provide(BazContext, "baz value"),
+    provide(BoofContext, "boof value"),
+  ]}
+></MultiProvider>;
 ```
 
 ## TypeScript usage
@@ -43,31 +44,33 @@ const BoofContexxt = createContext("boof");
 The above works perfectly fine for TypeScript. But if you want to ensure that the provided value matches the context value we need to help TS out a little, because it doesn't support [existential generics](https://github.com/microsoft/TypeScript/issues/14466).
 
 ```jsx
-import { createContext } from "preact";
-import { MultiProvider } from "preact-multi-provider"
+import { createContext } from "preact";
+import { MultiProvider } from "preact-multi-provider";
 
 const StringContext = createContext("foo");
 
-<MultiProvider values=[
-  // Bad: TS allows invalid value here
-  {context: StringContext, value: 2},
-]>
-</MultiProvider>
+<MultiProvider
+  values={[
+    // Bad: TS allows invalid value here
+    { context: StringContext, value: 2 },
+  ]}
+></MultiProvider>;
 ```
 
 With our helper
 
 ```jsx
-import { createContext } from "preact";
-import { MultiProvider, provide } from "preact-multi-provider"
+import { createContext } from "preact";
+import { MultiProvider, provide } from "preact-multi-provider";
 
 const StringContext = createContext("foo");
 
-<MultiProvider values=[
-  // Good: TS errors when value doesn't match context
-  provide(StringContext, "foo"),
-]>
-</MultiProvider>
+<MultiProvider
+  values={[
+    // Good: TS errors when value doesn't match context
+    provide(StringContext, "foo"),
+  ]}
+></MultiProvider>;
 ```
 
 ## Why?
@@ -110,16 +113,17 @@ Rewriting both the consuming portions as well as the providing ones is often con
 After:
 
 ```jsx
-import { MultiProvider } from "preact-multi-provider"
+import { MultiProvider } from "preact-multi-provider";
 
 // usage
-<MultiProvider values=[
-  {context: FooContext, value: "foo"},
-  {context: BarContext, value: "bar"},
-  {context: BazContext, value: "baz"},
-  {context: BoofContext, value: "boof"},
-]>
-</MultiProvider>
+<MultiProvider
+  values={[
+    { context: FooContext, value: "foo" },
+    { context: BarContext, value: "bar" },
+    { context: BazContext, value: "baz" },
+    { context: BoofContext, value: "boof" },
+  ]}
+></MultiProvider>;
 ```
 
 This will get rid of all the context providers and combine them into a single one. That works because in Preact the internals don't have a concept of context provider components, so we can add as many context objects as we want at the same time.
