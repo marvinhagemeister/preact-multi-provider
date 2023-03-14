@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json",
+    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json && node tools/fix-esm.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
