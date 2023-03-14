@@ -19,8 +19,8 @@
   },
   "scripts": {
     "test": "vitest",
-    "build2": "esbuild src/index.tsx --outfile=dist/esm/index.mjs --sourcemap=inline && esbuild src/index.tsx --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap=inline && tsc -p tsconfig.node.json --emitDeclarationOnly",
-    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json"
+    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist"
