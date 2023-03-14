@@ -1,12 +1,15 @@
 {
   "name": "preact-multi-provider",
   "version": "1.0.1",
+  "private": false,
   "description": "Provide multiple contexts at once instead of using hundreds of context providers",
   "keywords": [
     "preact",
     "context"
   ],
   "author": "Marvin Hagemeister <hello@marvinh.dev>",
+  "repository": "marvinhagemeister/preact-multi-provider",
+  "bugs": "https://github.com/marvinhagemeister/preact-multi-provider/issues",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "exports": {
