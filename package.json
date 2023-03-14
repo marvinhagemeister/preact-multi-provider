@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json",
+    "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json && node tools/fix-esm.js",
     "prepublishOnly": "npm run build"
   },
   "files": [
@@ -29,6 +29,7 @@
     "preact": "^10.10.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@preact/preset-vite": "^2.5.0",
     "happy-dom": "^8.9.0",
     "husky": "^8.0.3",
