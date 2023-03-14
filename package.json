@@ -1,5 +1,5 @@
 {
-  "name": "preact-multi-context",
+  "name": "preact-multi-provider",
   "version": "0.0.1",
   "description": "Provide multiple contexts at once instead of using hundreds of context providers",
   "keywords": [
@@ -22,6 +22,9 @@
     "build2": "esbuild src/index.tsx --outfile=dist/esm/index.mjs --sourcemap=inline && esbuild src/index.tsx --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap=inline && tsc -p tsconfig.node.json --emitDeclarationOnly",
     "build": "rimraf dist && tsc -p tsconfig.esm.json && tsc -p tsconfig.node.json"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "preact": "^10.10.0"
   },
