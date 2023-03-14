@@ -1,6 +1,6 @@
 {
   "name": "preact-multi-provider",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provide multiple contexts at once instead of using hundreds of context providers",
   "keywords": [
     "preact",
