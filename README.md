@@ -13,7 +13,7 @@ Install the package:
 npm install preact-multi-provider
 # yarn
 yarn add preact-multi-provider
-# pmpm
+# pnpm
 pnpm install preact-multi-provider
 ```
 
