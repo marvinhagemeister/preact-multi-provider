@@ -41,7 +41,7 @@ const BoofContexxt = createContext("boof");
 
 ## TypeScript usage
 
-The above works perfectly fine for TypeScript. But if you want to ensure that the provided value matches the context value we need to help TS out a little, because it doesn't support [existential generics](https://github.com/microsoft/TypeScript/issues/14466).
+The snippet below works perfectly fine for TypeScript. But if you want to ensure that the provided value matches the context value we need to help TS out a little, because it doesn't support [existential generics](https://github.com/microsoft/TypeScript/issues/14466).
 
 ```jsx
 import { createContext } from "preact";
