@@ -31,44 +31,10 @@ const BoofContexxt = createContext("boof");
 // usage
 <MultiProvider
   values={[
-    provide(FooContext, "foo value"),
-    provide(BarContext, "bar value"),
-    provide(BazContext, "baz value"),
-    provide(BoofContext, "boof value"),
-  ]}
-></MultiProvider>;
-```
-
-## TypeScript usage
-
-The snippet below works perfectly fine for TypeScript. But if you want to ensure that the provided value matches the context value we need to help TS out a little, because it doesn't support [existential generics](https://github.com/microsoft/TypeScript/issues/14466).
-
-```jsx
-import { createContext } from "preact";
-import { MultiProvider } from "preact-multi-provider";
-
-const StringContext = createContext("foo");
-
-<MultiProvider
-  values={[
-    // Bad: TS allows invalid value here
-    { context: StringContext, value: 2 },
-  ]}
-></MultiProvider>;
-```
-
-With our helper
-
-```jsx
-import { createContext } from "preact";
-import { MultiProvider, provide } from "preact-multi-provider";
-
-const StringContext = createContext("foo");
-
-<MultiProvider
-  values={[
-    // Good: TS errors when value doesn't match context
-    provide(StringContext, "foo"),
+    { context: FooContext, value: "foo value" },
+    { context: BarContext, value: "bar value" },
+    { context: BazContext, value: "baz value" },
+    { context: BoofContext, value: "boof value" },
   ]}
 ></MultiProvider>;
 ```

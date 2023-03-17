@@ -1,23 +1,22 @@
-import {
-  type Component,
-  type ComponentChildren,
-  type FunctionComponent,
-  type Context,
-} from "preact";
+import { type Component, type ComponentChildren, type Context } from "preact";
 
 export type ContextDef<T> = {
   context: Context<T>;
   value: T;
 };
 
-export interface MultiProviderProps {
-  values: ContextDef<any>[];
+export interface MultiProviderProps<
+  T extends readonly [unknown, ...unknown[]]
+> {
+  values: {
+    [K in keyof T]: ContextDef<T[K]>;
+  };
   children: ComponentChildren;
 }
 
-function _MultiProvider(
-  this: Component<MultiProviderProps>,
-  props: MultiProviderProps
+export function MultiProvider<T extends readonly [unknown, ...unknown[]]>(
+  this: Component<MultiProviderProps<T>>,
+  props: MultiProviderProps<T>
 ) {
   if (!this.getChildContext) {
     let subs: Component[][] = [];
@@ -43,7 +42,7 @@ function _MultiProvider(
 
     this.getChildContext = () => ctx;
 
-    this.shouldComponentUpdate = function (_props: MultiProviderProps) {
+    this.shouldComponentUpdate = function (_props: MultiProviderProps<T>) {
       const current = this.props.values;
       const next = _props.values;
       for (let i = 0; i < next.length; i++) {
@@ -62,9 +61,10 @@ function _MultiProvider(
   return props.children as any;
 }
 
-export const MultiProvider =
-  _MultiProvider as FunctionComponent<MultiProviderProps>;
-
+/**
+ * @deprecated - This is not needed anymore. It was a helper to guide
+ * TypeScript inference, but with recent improvements to our typings this is redundant.
+ */
 export function provide<T>(context: Context<T>, value: T): ContextDef<T> {
   return { context, value };
 }
